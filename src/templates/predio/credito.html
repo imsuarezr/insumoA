@@ -1,0 +1,143 @@
+{% extends './base.html' %}
+
+{% block js %}
+
+<script> 
+  $(function () {
+        $("#myTab a:contains('Información del predio')").parent().addClass('active');        
+     });
+
+$(document).ready(function() {
+  $('#form').ajaxForm(function() {
+    alert("Información del crédito creada correctamente");
+  }); 
+
+}); // cierra document ready
+
+
+$(document).ready(function(){
+  $("#id_posee_incentivo").blur(function(){
+    if ($("#id_posee_incentivo").val()=="No"){
+      $("#id_tipo_incentivo").hide();
+      $("#tipo").hide();
+    }
+     else {
+      $("#id_tipo_incentivo").show();
+      $("#tipo").show();
+    }
+   
+  }); // blur incentivo
+
+ });
+
+
+  
+</script>
+{% endblock %}
+
+{% block content %}
+
+<ul class="nav nav-tabs">
+  <li role="presentation"><a href="/informacionpredio/infogeneral/{{object.predio_id}}">Información general y jurídica</a></li>
+  <li role="presentation" class="active"><a href="#">Crédito</a></li>
+  <li role="presentation"><a href="/informacionpredio/vivienda/{{object.predio_id}}">Vivienda estructura y servicios básicos</a></li>
+</ul>
+
+
+<div class="alert alert-info" role="alert">Crédito #{{object.consecutivo}}</div>
+
+<nav>
+
+{% if no_previous %}
+<script>
+$(document).ready(function() {
+  $('#no-previous').hide();
+});
+</script>
+{% endif %}
+
+  <ul class="pager">
+  {% if prev_id %}
+    <li class="previous" id="no-previous"><a href="/informacionpredio/creditos/{{object.predio_id}}/{{prev_id}}"><span aria-hidden="true">&larr;</span> Anterior</a></li>
+  {% endif %}
+
+
+
+    {% if next_id %}
+    <li class="next"><a href="/informacionpredio/creditos/{{object.predio_id}}/{{next_id}}">Siguiente <span aria-hidden="true">&rarr;</span></a></li>
+    {% endif %}
+
+  
+  </ul>
+</nav>
+
+</br>
+
+<form action="." method="POST" id="form">{% csrf_token %}
+<div class="tab-content">
+        <div class="tab-pane active" id="creditos">
+          <div class="row-fluid">
+            <ul class="inline">
+              <h4>Créditos</h4>
+              
+            </ul>
+           <ul class="inline">
+              <li style="margin-right:50px">Origen del crédito</li>
+              <li>Lugar de expedición</li>
+            </ul>
+            <ul class="inline">
+              <li>{{form.origen_credito}}</li>
+              <li>{{form.lugar_expedicion}}</li>
+            </ul>
+             <ul class="inline">
+              <li style="margin-right:90px">Tipo cuota</li>
+              <li>Pago cuota</li>
+            </ul>
+            <ul class="inline">
+              <li>{{form.tipo_cuota}}</li>
+              <li>{{form.pago_cuota}}</li>
+            </ul>
+            <ul class="inline">
+              <li>Uso principal del crédito</li>
+            </ul>
+            <ul class="inline">
+              <li>{{form.uso_principal}}</li>
+            </ul>
+            <ul class="inline">
+              <li>Posee algun incentivo?</li>
+            </ul>
+            <ul class="inline">
+              <li>
+                {{form.posee_incentivo}}
+              </li>
+            </ul>
+            <ul class="inline" id="tipo">
+              <li>Tipo de incentivo</li>
+            </ul>
+            <ul class="inline">
+              <li>
+                {{form.tipo_incentivo}}
+              </li>
+            </ul>
+            <ul class="inline">
+              <li>Tiene otros ingresos ext. ademas de los que recibe por la finca?</li>
+              <li>
+                {{form.ingresos_externos}}
+              </li>
+            </ul>
+            <ul class="inline">
+              <li>Posee algún tipo de subsidio?</li>
+              <li>
+                {{form.posee_subsidio}}
+              </li>
+            </ul>
+          </div>          
+        </div>
+        </div>
+      <input type="submit"  value="Guardar"></br></br>
+       </div>
+      </div>       
+     </div>
+     </form>         
+
+{% endblock %}

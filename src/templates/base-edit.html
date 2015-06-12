@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+     <meta charset="utf-8">
+     <title>{% block title %} {% endblock %}</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+     <link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap.css"> <!--Reemplazar para trabajar desde servidor -->
+
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script src="http://malsup.github.com/jquery.form.js"></script> 
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.6/css/jquery.dataTables.min.css">
+<script src="https://cdn.datatables.net/1.10.6/js/jquery.dataTables.min.js"></script>
+
+<link rel="stylesheet" href="{{STATIC_URL}}js/demo.js"> 
+
+    <script src="{{STATIC_URL}}js/bootstrap.js"></script> 
+    <script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        $('#tabs').tab();
+    });
+</script>  
+
+<script>
+
+$(document).ready(function() {
+  $('#formEliminar').ajaxForm(function(data) {
+    location.reload();
+  }); 
+});
+</script>
+
+
+<script>
+  $(document).ready(function() {
+    var table = $('#tabla').DataTable( {
+        responsive: true,
+        paging: false
+    } );
+ 
+    new $.fn.dataTable.FixedHeader( table );
+   } );
+ </script> 
+
+
+{% block js %}{% endblock %}
+
+     <style type="text/css">
+     body{
+      padding-top: 10px;
+      padding-bottom: 50px;
+     }
+     @media (min-width: 980px) {
+    .nav-collapse.collapse {
+    height: auto !important;
+    overflow: visible !important;
+      }
+    }
+     html,
+     body {
+      height: 100%;
+     }
+     @media (max-width: 900px) {
+      #formulario1 {
+        display: block;
+        margin-bottom: 310px;
+        width: 100%;
+      }
+     }
+     @media (max-width: 770px) {
+      #info1{
+        margin-left: -10px;
+        margin-right: -10px;
+      }
+      #info3{
+        margin-left: 0px;
+        margin-right: 0px;
+      }
+      #formulario1{
+        margin-right: 1px;
+        margin-left: 1px;
+      }
+      #piepagina{
+        margin-left: 5px;
+        margin-right: 5px;
+      }
+      #ubicacion2{
+        margin-left: 1px;
+        margin-right: 1px;
+      }
+      #barra{
+        margin-right: -20px;
+        margin-left: -20px;
+      }
+     }
+     </style>
+     <link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap-responsive.css">       <!--Reemplazar para trabajar desde servidor -->
+  
+  
+
+  </head> 
+  <body>
+    <div class="navbar">
+        <div class="navbar-inner">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="#" class="brand">PrediApp<img src="http://imageshack.com/a/img538/8439/N3lBTg.png" style="width: 40px;height: 40px;margin-top: -10px;margin-bottom: -10px"></a>
+         <div class="nav-collapse collapse">
+            <ul class="nav">                       
+             <li class="active"><a href="/"><i class="icon-home icon-black"></i> Inicio</a></li>
+   
+             <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-map-marker icon-black"></i> Predios<span class="caret"></span>
+              </a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/informacionpredio/first/infogeneral/">Ingresar predio</a></li>
+                  </ul>
+             </li>           
+     
+          </ul>
+          <ul class="nav pull-right">
+            <li class="dropdown">
+             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-black"></i> Funcionario {{user.username}}<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="/logout">Cerrar Sesión</a></li>
+              </ul>
+           </li>
+          </ul>
+          <legend style="background-color:red;max-width:100%;margin-bottom:8px;height:3px"></legend>           
+          <!--<ul class="nav">
+            <li><h4><img src="http://imageshack.com/a/img537/7617/0BuB6Y.png" style="height: 40px;width: 50px;margin-bottom: -5px;margin-top: -20px">
+          Identificacion de usuarios</h4></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Modulos de sistema<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Identificacion de usuarios</a></li>
+              <li><a href="#">Planificacion predial</a></li>
+              <li><a href="#">Modulo localizacion y caracterizacion</a></li>
+            </ul>
+          </li>
+          </ul>-->    
+      </div>
+     </div>
+    </div>
+    <div class="accordion" style="margin-top: 20px;margin-left: 15px;margin-right: 15px;max-width: 270px;display: block;position: absolute">
+      <div class="accordion-group">
+       <div class="accordion-heading">
+        <a class="accordion-toggle"  aria-expanded="true" data-toggle="collapse" data-parent="#formulario2" href="#collapseOne">
+         Filtro Básico         
+        </a>
+       </div>
+       <div id="collapseOne" class="accordion-body collapse">
+        <div class="accordion-inner">
+
+    <form action="/buscar/" method="post">{% csrf_token %}
+        <input type="text" name="nombre_predio" placeholder="Nombre Predio">
+        <input type="submit" value="Buscar">
+    </form>
+
+        </div>
+       </div>
+      </div>
+      <!--<div class="accordion-group">
+     <div class="accordion-heading">
+       <a class="accordion-toggle" data-toggle="collapse" data-parent="#formulario2" href="#collapseTwo">
+         Buscar por Propietario
+       </a>
+     </div>
+     <div id="collapseTwo" class="accordion-body collapse">
+      <div class="accordion-inner">
+
+<form action="/buscar/" method="post">{% csrf_token %}
+        <input type="text" name="propietario" placeholder="Cedula Propietario">
+        <input type="submit" value="Buscar">
+    </form>
+
+
+
+      </div>
+     </div>
+    </div>      
+    </div>-->
+    </div><!--div intocable-->
+
+       <div style="padding-left: 10px;padding-right: 10px;padding-bottom: 5px;margin-left: 300px;margin-top: 40px;max-width: auto;margin-right: 30px;margin-bottom: -5px;" class="navbar">     
+        <div class="navbar-inner">
+        <a href="#" class="brand"></a>
+        </div>
+       </div>
+       <div class="tabbable" style="margin-left: 310px;border-top: none;border: 1px solid gray;height: auto;border-radius: 5px;padding-top: 15px;padding-right: 10px;margin-right: 40px;max-width: auto;margin-bottom: 10px;padding-left: 10px;min-height: 250px;display: block">
+
+
+
+{% block content %}
+
+
+{% endblock %}
+
+
+
+
+
+  </body>
+</html>

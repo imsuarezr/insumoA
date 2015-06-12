@@ -1,0 +1,72 @@
+{% extends 'base-edit.html' %}
+{% block title %} Consulta de Predio {% endblock %}
+
+
+{% block js %}
+<script>
+
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="table-responsive">
+<table class="table table-bordered" id="tabla">
+    <thead>
+    <tr>
+        <!--<th># Predio</th>-->
+        <th>Nombre Predio</th>
+        <th>Coordenada N</th>
+        <th>Coordenada W</th>
+        <!--<th>Ext Total</th>-->   
+        <th>Editar</th>    
+        <th>Ver reporte</th>    
+        <th>Eliminar</th>    
+    </tr>
+    </thead>
+    <tbody>
+        {% for p in data %}
+        <tr>
+            <td>{{p.nombre_predio}}</td>
+            <td>{{p.coordenada_n}}</td>
+            <td>{{p.coordenada_w}}</td>
+            <!--<td>{{p.ext_total}}</td>-->
+<td><div align="center"><a class="btn btn-warning" href="/informacionpredio/info/{{p.pk}}/"><i class="icon-pencil"></i>  Editar </a></div></td>
+
+<td><div align="center"><a class="btn btn-success" href="/reporte/{{p.pk}}/"><i class="icon-th-list"></i> Ver reporte </a></div></td>
+   
+<td><!--
+<form method="POST" id="removeForm" action="/remove/{{p.id}}/">{% csrf_token %}
+<input type="hidden" id="{{p.id}}" name="remove_predio">
+<a><input type="submit" class="btn btn-danger" value="Eliminar"></a>
+</form>-->
+<a href="#Modal{{p.id}}" role="button" class="btn btn-danger delete" data-toggle="modal" id="{{p.id}}" data-name="{{p.nombre_predio}}"><i class="icon-trash icon-white"></i>Eliminar</a>
+</td>
+      </tr>
+
+<!--IniciaModal-->
+ <div id="Modal{{p.id}}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+    <h3 id="myModalLabel">Eliminar Predio</h3>
+    </div>
+    <div class="modal-body">
+    <p>¿Realmente desea eliminar el predio {{p.nombre_predio}}?. Una vez eliminado no podrás recuperar los datos. <span id="modal_name"></span>?</p>
+    </div>
+    <div class="modal-footer">
+        <form action="/eliminar/{{p.id}}/" method="post" id="formEliminar">
+            {% csrf_token %}
+            <input type="hidden" id="{{p.id}}"  value="{{p.id}}" name="predio">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+        </form>
+    </div>
+</div>
+<!--EndModal-->
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+
+{% endblock %}
+
+
+

@@ -1,0 +1,127 @@
+{% extends './base.html' %}
+
+{% block js %}
+
+<script> 
+  $(function () {
+        $("#myTab a:contains('Venta de lácteos y costos')").parent().addClass('active');        
+     });
+
+$(document).ready(function() {
+  $('#form').ajaxForm(function() {
+    alert("Información de producción de leche guardada exitosamente");
+   window.location.href = '/lacteos/suplementos/{{object.predio_id}}';
+  }); 
+});
+
+  
+</script>
+{% endblock %}
+
+{% block content %}
+
+<ul class="nav nav-tabs">
+  <li role="presentation" class="active"><a href="/lacteos/produccion-leche/{{object.predio_id}}">Venta de lácteos </a></li>
+  <li role="presentation"><a href="/lacteos/suplementos/{{object.predio_id}}">Costos de producción </a></li>
+</ul>
+
+</br>
+<!--
+<form action="." method="POST" id="form">{% csrf_token %}
+{{form.as_p}}
+<p><input type="submit" value="Guardar"></p>
+</form>
+-->
+<form action="." method="POST" id="form">{% csrf_token %}
+ <div class="tab-content">
+           <div class="tab-pane active" id="parte6">
+         
+         <div class="tab-content">
+           <div class="tab-pane active" id="ventalacteos">
+            <div class="row-fluid">
+            <div class="span6">
+             <ul class="inline">
+               <li style="margin-right:83px"><h4>Producci&oacute;n de leche</h4></li>
+               <li><p class="text-info">Cant</p></li>
+             </ul>
+             <ul class="inline">
+               <li style="margin-right:76px">Total producido por litro d&iacute;a</li>
+               <li>{{form.total_producido_litro_dia}}</li>
+             </ul>
+             <ul class="inline">
+               <li>Cantidad destinada a productos l&aacute;cteos</li>
+               <li>{{form.cantidad_destinada_productos_lacteos}}</li>
+             </ul>
+             <ul class="inline">
+               <li style="margin-right:2px">Cantidad destinada autoconsumo x d&iacute;a</li>
+               <li>{{form.cantidad_destinada_autoconsumo_dia}}</li>
+             </ul>
+             <ul class="inline">
+               <li style="margin-right:101px">Precio por litro de leche</li>
+               <li>{{form.precio_litro_leche}}</li>
+             </ul>
+             <ul class="inline">
+               <li style="margin-right:8px">Promedio de vacas ordeñadas por d&iacute;a</li>
+               <li>{{form.promedio_vacas_ordenadas_dia}}</li>
+             </ul>
+             <ul class="inline" style="margin-top:30px">
+               <li style="margin-right:46px"><h4>Producci&oacute;n de queso</h4></li>
+               <li><p class="text-info">Cant</p></li>
+             </ul>
+             <ul class="inline">
+               <li style="margin-right:122px">Queso de mano</li>
+               <li>{{form.queso_de_mano}}</li>
+             </ul>
+             <ul class="inline">
+               <li style="margin-right:128px">Queso cuajada</li>
+               <li>{{form.queso_cuajada}}</li>
+             </ul>
+             <ul class="inline">
+               <li style="margin-right:118px">Queso prensado</li>
+               <li>{{form.queso_prensado}}</li>
+             </ul>
+             <ul class="inline">
+               <li style="margin-right:113px">Queso madurado</li>
+               <li>{{form.queso_maduro}}</li>
+             </ul>
+             <!--<ul class="inline">
+               <li><input type="text" placeholder="Otro" class="input-large"></li>
+               <li><input type="text" placeholder="(Kg)" class="input-mini"></li>
+             </ul>-->
+           </div>
+           <div class="span6">
+             <ul class="inline">
+               <li style="margin-right:63px"><h4>Otros derivados</h4></li>
+               <li><p class="text-info">Cant</p></li>
+             </ul>
+             <ul class="inline">
+               <li style="margin-right:124px">Mantequilla</li>
+               <li>{{form.mantequilla}}</li>
+             </ul>
+             <ul class="inline">
+               <li style="margin-right:147px">Yogurth</li>
+               <li>{{form.yogurth}}</li>
+             </ul>
+             <ul class="inline">
+               <li style="margin-right:158px">Kumis</li>
+               <li>{{form.kumis}}</li>
+             </ul>
+             <ul class="inline">
+               <li>Dulces (Arequipe, cortado, etc)</li>
+               <li>{{form.dulces}}</li>
+             </ul>
+             <ul class="inline" style="margin-top:90px">
+               <h4>A quien vende la leche</h4>
+               {{form.a_quien_vende}}
+             </ul>
+           </div>
+          </div>
+          </div>
+         </div>
+       </div>
+      </div>       
+
+<input type="submit"  value="Guardar">
+     </div>         
+</form>   
+{% endblock %}

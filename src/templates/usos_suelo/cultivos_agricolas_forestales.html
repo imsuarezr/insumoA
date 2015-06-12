@@ -1,0 +1,143 @@
+{% extends './base.html' %}
+
+{% block js %}
+
+<script> 
+  $(function () {
+        $("#myTab a:contains('Usos del suelo')").parent().addClass('active');        
+     });
+</script>
+<script>
+$(document).ready(function() {
+  $('#form').ajaxForm(function() {
+    alert("Cultivos agricolas guardado exitosamente");
+   window.location.href = '/hato/hembras/{{object.predio_id}}';
+  }); 
+
+});
+</script>
+{% endblock %}
+
+{% block content %}
+
+<ul class="nav nav-tabs">
+  <li role="presentation"><a href="/usossuelo/pastoreo/{{object.predio_id}}">Actividades Pecuarias </a></li>
+  <li role="presentation" class="active"><a href="/usossuelo/cultivos/{{object.predio_id}}">Actividades agricolas y forestales </a></li>
+  <!--<li role="presentation"><a href="/usossuelo/conservacion-natural/">Bosques, areas de conservacion y sistemas agroforestales </a></li>-->
+</ul>
+
+<form action="." method="POST" id="form">{% csrf_token %}
+<div class="tab-content">
+           <div class="tab-pane active" id="actagriforest">
+             <div class="row-fluid">
+               <div class="span6">
+                 <ul class="inline">
+                   <h4>Cultivos agr&iacute;colas</h4>
+                   <li style="margin-right:80px"><p class="text-info">Cultivos agr&iacute;colas homog&eacute;neos</p></li>
+                   <li><p class="text-info">Has</p></li>
+                 </ul>
+                 <ul class="inline">
+                   <li style="margin-right:249px">Ma&iacute;z</li>
+                   <li>{{form.maiz}}</li>
+                 </ul>
+                 <ul class="inline">
+                   <li style="margin-right:231px">Pl&aacute;tano</li>
+                   <li>{{form.platano}}</li>
+                 </ul>
+                 <ul class="inline">
+                   <li style="margin-right:249px">Caf&eacute;</li>
+                   <li>{{form.cafe}}</li>
+                 </ul>
+                 <!--<ul class="inline">
+                   <li style="margin-right:55px"><input type="text" placeholder="Otro" class="input-large"></li>
+                   <li><input type="text" placeholder="Has" class="input-mini"></li>
+                 </ul>
+                 <ul class="inline">
+                   <li style="margin-right:55px"><input type="text" placeholder="Otro" class="input-large"></li>
+                   <li><input type="text" placeholder="Has" class="input-mini"></li>
+                 </ul>-->
+                 <ul class="inline" style="margin-top:50px">
+                   <li style="margin-right:125px"><p class="text-info">Cultivos agr&iacute;colas mixtos</p></li>
+                   <li><p class="text-info">Has</p></li>
+                 </ul>
+                 <ul class="inline">
+                   <li style="margin-right:171px">Ma&iacute;z con pl&aacute;tano</li>
+                   <li>{{form.maiz_con_platano}}</li>
+                 </ul>
+                 <ul class="inline">
+                   <li style="margin-right:162px">Pl&aacute;tano con cacao</li>
+                   <li>{{form.platano_con_cacao}}</li>
+                 </ul>
+                 <ul class="inline">
+                   <li style="margin-right:171px">Caf&eacute; con pl&aacute;tano</li>
+                   <li>{{form.cafe_con_platano}}</li>
+                 </ul>
+                 <!--<ul class="inline">
+                   <li style="margin-right:55px"><input type="text" placeholder="Otro" class="input-large"></li>
+                   <li><input type="text" placeholder="Has" class="input-mini"></li>
+                 </ul>
+                 <ul class="inline">
+                   <li style="margin-right:55px"><input type="text" placeholder="Otro" class="input-large"></li>
+                   <li><input type="text" placeholder="Has" class="input-mini"></li>
+                 </ul>-->
+               </div>
+               <div class="span6">
+                 <ul class="inline">
+                   <h4>Plantaciones forestales</h4>
+                   <li style="margin-right:70px"><p class="text-info">Plantaciones forestales homog&eacute;neas</p></li>
+                   <li><p class="text-info">Has</p></li>
+                 </ul>
+                 <ul class="inline">
+                   <li style="margin-right:241px">Eucalipto</li>
+                   <li>{{form.eucalipto}}</li>
+                 </ul>
+                 <ul class="inline">
+                   <li style="margin-right:271px">Pino</li>
+                   <li>{{form.pino}}</li>
+                 </ul>
+                 <ul class="inline">
+                   <li style="margin-right:267px">Teca</li>
+                   <li>{{form.teca}}</li>
+                 </ul>
+                 <!--<ul class="inline">
+                   <li style="margin-right:75px"><input type="text" placeholder="Otro" class="input-large"></li>
+                   <li><input type="text" placeholder="Has" class="input-mini"></li>
+                 </ul>
+                 <ul class="inline">
+                   <li style="margin-right:75px"><input type="text" placeholder="Otro" class="input-large"></li>
+                   <li><input type="text" placeholder="Has" class="input-mini"></li>
+                 </ul>-->
+                 <ul class="inline" style="margin-top:50px">
+                   <li style="margin-right:115px"><p class="text-info">Plantaciones forestales mixtas</p></li>
+                   <li><p class="text-info">Has</p></li>
+                 </ul>
+                 <ul class="inline">
+                   <li style="margin-right:190px">Teca mas melina</li>
+                   <li>{{form.teca_mas_melina}}</li>
+                 </ul>
+                 <ul class="inline">
+                   <li style="margin-right:184px">Pardillo mas tol&uacute;a</li>
+                   <li>{{form.pardillo_mas_tolua}}</li>
+                 </ul>
+                 <!--<ul class="inline">
+                   <li style="margin-right:75px"><input type="text" placeholder="Otro" class="input-large"></li>
+                   <li><input type="text" placeholder="Has" class="input-mini"></li>
+                 </ul>
+                 <ul class="inline">
+                   <li style="margin-right:75px"><input type="text" placeholder="Otro" class="input-large"></li>
+                   <li><input type="text" placeholder="Has" class="input-mini"></li>
+                 </ul>
+                 <ul class="inline">
+                   <li style="margin-right:75px"><input type="text" placeholder="Otro" class="input-large"></li>
+                   <li><input type="text" placeholder="Has" class="input-mini"></li>
+                 </ul>-->
+               </div>
+             </div>
+           </div>
+         <input type="submit"  value="Guardar">
+         </div>
+       </div>
+      </div>       
+     </div>         
+</form>
+{% endblock %}

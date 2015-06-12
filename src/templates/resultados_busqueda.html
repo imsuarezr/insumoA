@@ -1,0 +1,89 @@
+{% extends 'base-edit.html' %}
+{% block title %} Consulta de Predios {% endblock %}
+{% block content %}
+
+
+{% if predio %}
+<div class="table-responsive">
+<table class="table table-bordered" id="tabla">
+    <thead>
+    <tr>
+        <!--<th># Predio</th>-->
+        <th>Nombre Predio</th>
+        <th>Coordenada N</th>
+        <th>Coordenada W</th>
+        <!--<th>Ext Total</th>-->   
+        <th>Editar</th>    
+        <th>Ver reporte</th>    
+        <th>Eliminar</th>    
+    </tr>
+    </thead>
+    <tbody>
+        {% for p in predio %}
+        <tr>
+            <td>{{p.nombre_predio}}</td>
+            <td>{{p.coordenada_n}}</td>
+            <td>{{p.coordenada_w}}</td>
+            <!--<td>{{p.ext_total}}</td>-->
+<td><div align="center"><a class="btn btn-warning" href="/informacionpredio/info/{{p.pk}}/"><i class="icon-pencil"></i>  Editar </a></div></td>
+
+<td><div align="center"><a class="btn btn-success" href="/reporte/{{p.pk}}/"><i class="icon-th-list"></i> Ver reporte </a></div></td>
+   
+<td>
+<form method="POST" id="removeForm" action="/remove/{{p.id}}/">{% csrf_token %}
+<input type="hidden" id="{{p.id}}" name="remove_predio">
+<a><input type="submit" class="btn btn-danger" value="Eliminar"></a>
+</form>
+</td>
+      </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+{% endif %}
+
+{% comment %}
+{% if propietario %}
+<div class="table-responsive">
+<table class="table table-bordered" id="tabla">
+    <thead>
+    <tr>
+        <!--<th># Predio</th>-->
+        <th>Nombre Predio</th>
+        <th>Coordenada N</th>
+        <th>Coordenada W</th>
+        <!--<th>Ext Total</th>-->   
+        <th>Editar</th>    
+        <th>Ver reporte</th>    
+        <th>Eliminar</th>    
+    </tr>
+    </thead>
+    <tbody>
+        {% for p in propietario %}
+        <tr>
+            <td>{{p.predio.nombre_predio}}</td>
+            <td>{{p.predio.coordenada_n}}</td>
+            <td>{{p.predio.coordenada_w}}</td>
+            <!--<td>{{p.ext_total}}</td>-->
+<td><div align="center"><a class="btn btn-warning" href="/informacionpredio/info/{{p.predio.pk}}/"><i class="icon-pencil"></i>  Editar </a></div></td>
+
+<td><div align="center"><a class="btn btn-success" href="/reporte/{{p.predio.pk}}/"><i class="icon-th-list"></i> Ver reporte </a></div></td>
+   
+<td>
+<form method="POST" id="removeForm" action="/remove/{{p.predio.id}}/">{% csrf_token %}
+<input type="hidden" id="{{i.id}}" name="remove_predio">
+<a><input type="submit" class="btn btn-danger" value="Eliminar"></a>
+</form>
+</td>
+      </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+{% endif %}
+{% endcomment %}
+
+
+
+
+{% endblock %}

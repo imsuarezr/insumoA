@@ -1,0 +1,181 @@
+{% extends './base.html' %}
+
+{% block js %}
+
+<script> 
+  $(function () {
+        $("#myTab a:contains('Manejo general de la finca')").parent().addClass('active');        
+     });
+
+$(document).ready(function() {
+  $('#form').ajaxForm(function() {
+    alert("Información de manejo general de la finca guardado exitosamente");
+    window.location.href = '/manejo-finca/enfermedades/{{object.predio_id}}';
+  }); 
+});
+
+  
+</script>
+{% endblock %}
+
+{% block content %}
+
+<ul class="nav nav-tabs">
+  <li role="presentation" class="active"><a href="">Manejo general y potreros </a></li>
+  <li role="presentation"><a href="/manejo-finca/enfermedades/{{object.predio_id}}">Enfermedades y problemas sanitarios </a></li>
+</ul>
+
+<form action="." method="POST" id="form">{% csrf_token %}
+<div class="tab-content">
+           <div class="tab-pane active" id="manejogralpotrero">
+             <div class="row-fluid">
+               <div class="span6">
+                 <ul class="inline">
+                 <form action="." method="POST" id="form">{% csrf_token %}
+                   <h4>Manejo de general</h4>
+                   <li>Tipo de ordeño</li>
+                   <li>
+                     {{form.tipo_ordeno}}
+                   </li>
+                 </ul>
+                 <ul class="inline">
+                   <li>Sistema de reproduccion utilizado</li>
+                 </ul>
+                 <ul class="inline">
+                   <li>
+                     {{form.sistema_reproduccion}}
+                   </li>
+                 </ul>
+                 <!--<ul class="inline">
+                   <li>Otro sistema de reproduccion</li>                   
+                 </ul>
+                 <ul class="inline">
+                   <li><input type="text" placeholder="Otro" class="input-large"></li>
+                 </ul>-->
+                 <ul class="inline">
+                   <li style="margin-right:40px">Realiza chequeos reproductivos?</li>
+                   <li>
+                     {{form.chequeos_reproductivos}}
+                   </li>
+                 </ul>
+                 <ul class="inline">
+                   <li style="margin-right:3px">Cuales chequeos utiliza?</li>
+                   <li>
+                     {{form.tipos_chequeo}}
+                   </li>
+                 </ul>
+                 <!--<ul class="inline">
+                   <li>Otro chequeo</li>
+                   <li><input type="text" placeholder="Otro" class="input-large"></li>
+                 </ul>-->
+                 <ul class="inline">
+                   <li style="margin-right:74px">Cria usted el terreno macho</li>
+                   <li>
+                     {{form.cria_terreno_macho}}
+                   </li>
+                 </ul>
+                 <ul class="inline">
+                   <li style="margin-right:79px">Hasta que edad los cria?</li>
+                   <li>{{form.limite_edad_crianza}}</li>
+                 </ul>
+                 <ul class="inline">
+                   <li style="margin-right:28px">Arrienda potreros para su ganado?</li>
+                   <li>
+                     {{form.arrienda_potreros}}
+                   </li>
+                 </ul>
+                 <ul class="inline">
+                   <li style="margin-right:65px"># de hectareas en arriendo</li>
+                   <li>{{form.numero_hectareas_arrienda}}</li>
+                 </ul>
+                 <ul class="inline">
+                   <li style="margin-right:46px">Cuanto paga por animal?</li>
+                   <li>{{form.cuanto_paga_por_animal}}</li>
+                 </ul>
+                 <ul class="inline">
+                   <li style="margin-right:32px">Cuanto paga por hectarea?</li>
+                   <li>{{form.cuanto_paga_por_hectarea}}</li>
+                 </ul>
+               </div>
+               <div class="span6">
+                 <ul class="inline">
+                   <h4>Manejo de potreros</h4>
+                   <li>Cuantos potreros tiene la finca?</li>
+                   <li>{{form.cantidad_potreros_finca}}</li>
+                 </ul>
+                 <ul class="inline">
+                   <li style="margin-right:18px">Tipo de pastoreo</li>
+                   <li>
+                     {{form.tipo_pastoreo}}
+                   </li>
+                 </ul>
+                 <ul class="inline">
+                   <h5>Manejo de praderas en epocas de lluvia</h5>
+                   <li style="margin-right:39px">Dias de descanso potrero</li>
+                   <li>{{form.dias_descanso_potrero_epocas_lluvia}}</li>
+                 </ul>
+                 <ul class="inline">
+                   <li style="margin-right:48px">Dias ocupacion potreros</li>
+                   <li>{{form.dias_ocupacion_potrero_epocas_lluvia}}</li>
+                 </ul>
+                 <ul class="inline">
+                   <h5>Manejo de praderas en epocas de sequia</h5>
+                   <li style="margin-right:39px">Dias de descanso potrero</li>
+                   <li>{{form.dias_descanso_potrero_epocas_sequia}}</li>
+                 </ul>
+                 <ul class="inline">
+                   <li style="margin-right:48px">Dias ocupacion potreros</li>
+                   <li>{{form.dias_ocupacion_potrero_epocas_sequia}}</li>
+                 </ul>
+                 <ul class="inline">
+                   <li>Cuantas veces al año limpia o desmaleza sus potreros</li>
+                 </ul>
+                 <ul class="inline">
+                   <li>
+                     {{form.dias_anio_limpieza_potrero}}
+                   </li>
+                 </ul>
+                 <ul class="inline">
+                   <h5>Metodo mas frecuente para desmalezar</h5>
+                   {{form.metodo_desmalezar}}
+                   <!--<label class="checkbox inline">
+                     <input type="checkbox" value="option1">Manual
+                   </label>
+                   <label class="checkbox inline">
+                     <input type="checkbox" value="option2">Herbicidas
+                   </label>
+                   <label class="checkbox inline">
+                     <input type="checkbox" value="option3">Mixto
+                   </label>
+                   <label class="checkbox inline">
+                     <input type="checkbox" value="option4">Guadaña
+                   </label>                   
+                 </ul>
+                 <ul class="inline">
+                   <label class="checkbox inline">
+                     <input type="checkbox" value="option5">Machete
+                   </label>
+                   <label class="checkbox inline">
+                     <input type="checkbox" value="option6">Palin
+                   </label>
+                   <label class="checkbox inline">
+                     <input type="checkbox" value="option7">Pastoreo del ganado
+                   </label>
+                 </ul>
+                 <ul class="inline">
+                   <label class="checkbox inline">
+                     <input type="checkbox" value="option8">Otro
+                   </label>
+                   <li><input type="text" placeholder="Otro" class="input-medium"></li>
+                 </ul>-->
+               </div>
+             </div>
+           </div>           
+         </div>
+<input type="submit"  value="Guardar">
+       </div>
+      </div>       
+     </div>
+     </form>         
+
+{% endblock %}

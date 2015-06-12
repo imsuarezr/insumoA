@@ -1,0 +1,47 @@
+{% extends './base.html' %}
+
+{% block js %}
+
+<script> 
+  $(function () {
+        $("#myTab a:contains('Indicadores económicos del Hato')").parent().addClass('active');        
+     });
+
+$(document).ready(function() {
+
+  $('#form').ajaxForm(function() {
+    alert("Formulario guardado exitosamente");
+  }); 
+});
+  
+
+
+</script>
+{% endblock %}
+
+{% block content %}
+
+<ul class="nav nav-tabs">
+  <li role="presentation"><a href="/hato/hembras/{{object.predio_id}}">Inventario Animal </a></li>
+  <li role="presentation" class="active"><a href="#">Parámetros Productivos </a></li>
+</ul>
+
+</br>
+<p>Ceba</p>
+<button id="add" onclick="add()">Agregar Hembra</button>
+<form action="." method="POST" id="form">{% csrf_token %}
+<p>{{form.as_p}}</p>
+<p><input type="submit" value="Guardar"></p>
+</form>
+
+
+<nav>
+  <ul class="pager">
+    <li class="previous"><a href="/hato/doble-proposito/{{object.predio_id}}"><span aria-hidden="true">&larr;</span> Doble propósito</a></li>
+    <li class="next"><a href="/hato/levante/{{object.predio_id}}">Levante <span aria-hidden="true">&rarr;</span></a></li>
+  </ul>
+</nav>
+
+{% endblock %}
+
+

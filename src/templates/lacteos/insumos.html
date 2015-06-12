@@ -1,0 +1,302 @@
+{% extends './base.html' %}
+
+{% block js %}
+
+<script> 
+  $(function () {
+        $("#myTab a:contains('Venta de lácteos y costos')").parent().addClass('active');        
+     });
+
+$(document).ready(function() {
+  $('#form').ajaxForm(function() {
+    alert("Información de insumos guardado exitosamente");
+    window.location.href = '/manejo-finca/manejo-general/{{object.predio_id}}';
+  }); 
+});
+
+  $(document).ready(function(){
+  
+  $("#id_parasitos_externos_cantidad").blur(function(){
+    var parasitos_cantidad = $("#id_parasitos_externos_cantidad").val();
+    var parasitos_valor = $("#id_parasitos_externos_valor").val();       
+    $("#id_parasitos_externos_total").val(Number(parasitos_cantidad)*Number(parasitos_valor));     
+  
+  $("#id_parasitos_externos_valor").blur(function(){
+    var sal_blanca_cantidad = $("#id_parasitos_externos_cantidad").val();
+    var parasitos_valor = $("#id_parasitos_externos_valor").val();       
+    $("#id_parasitos_externos_total").val(Number(parasitos_cantidad)*Number(parasitos_valor));     
+  }); // blur paridas propias
+  }); // blur paridas ajenas
+
+
+  $("#id_alambre_pua_cantidad").blur(function(){
+    var pua_cantidad = $("#id_alambre_pua_cantidad").val();
+    var pua_valor = $("#id_alambre_pua_valor").val();       
+    $("#id_alambre_pua_total").val(Number(pua_cantidad)*Number(pua_valor));     
+   
+   $("#id_alambre_pua_valor").blur(function(){
+    var pua_cantidad = $("#id_alambre_pua_cantidad").val();
+    var pua_valor = $("#id_alambre_pua_valor").val();       
+    $("#id_alambre_pua_total").val(Number(pua_cantidad)*Number(pua_valor));    
+  }); // blur paridas propias
+  }); // blur paridas ajenas
+
+
+  $("#id_alambre_electrica_cantidad").blur(function(){
+    var electrica_cantidad = $("#id_alambre_electrica_cantidad").val();
+    var electrica_valor = $("#id_alambre_electrica_valor").val();       
+    $("#id_alambre_electrica_total").val(Number(electrica_cantidad)*Number(electrica_valor)); 
+
+  $("#id_alambre_electrica_valor").blur(function(){
+    var electrica_cantidad = $("#id_alambre_electrica_cantidad").val();
+    var electrica_valor = $("#id_alambre_electrica_valor").val();       
+    $("#id_alambre_electrica_total").val(Number(electrica_cantidad)*Number(electrica_valor)); 
+  }); // blur paridas propias
+  }); // blur paridas ajenas
+
+
+  $("#id_gallinaza_compostada_cantidad").blur(function(){
+    var gallinaza_cantidad = $("#id_gallinaza_compostada_cantidad").val();
+    var gallinaza_valor = $("#id_gallinaza_compostada_valor").val();       
+    $("#id_gallinaza_compostada_total").val(Number(gallinaza_cantidad)*Number(gallinaza_valor)); 
+
+  $("#id_gallinaza_compostada_valor").blur(function(){
+    var gallinaza_cantidad = $("#id_gallinaza_compostada_cantidad").val();
+    var gallinaza_valor = $("#id_gallinaza_compostada_valor").val();       
+    $("#id_gallinaza_compostada_total").val(Number(gallinaza_cantidad)*Number(gallinaza_valor)); 
+
+
+  }); // blur paridas propias
+  }); // blur paridas ajenas
+
+
+
+  $("#id_servicios_veterinarios_cantidad").blur(function(){
+    var veterinarios_cantidad = $("#id_servicios_veterinarios_cantidad").val();
+    var veterinarios_valor = $("#id_servicios_veterinarios_valor").val();       
+    $("#id_servicios_veterinarios_total").val(Number(veterinarios_cantidad)*Number(veterinarios_valor)); 
+
+ $("#id_servicios_veterinarios_valor").blur(function(){
+    var concentrado_cantidad = $("#id_servicios_veterinarios_cantidad").val();
+    var veterinarios_valor = $("#id_servicios_veterinarios_valor").val();       
+    $("#id_servicios_veterinarios_total").val(Number(concentrado_cantidad)*Number(veterinarios_valor));
+
+
+  }); // blur paridas propias
+  }); // blur paridas ajenas
+
+
+  $("#id_postes_cantidad").blur(function(){
+    var postes_cantidad = $("#id_postes_cantidad").val();
+    var postes_valor = $("#id_postes_valor").val();       
+    $("#id_postes_total").val(Number(postes_cantidad)*Number(postes_valor)); 
+
+   $("#id_postes_valor").blur(function(){
+    var postes_cantidad = $("#id_postes_cantidad").val();
+    var postes_valor = $("#id_postes_valor").val();       
+    $("#id_postes_total").val(Number(postes_cantidad)*Number(postes_valor));
+
+  }); // blur paridas propias
+  }); // blur paridas ajenas
+
+
+ $("#id_medicamentos_cantidad").blur(function(){
+    var medicamentos_cantidad = $("#id_medicamentos_cantidad").val();
+    var medicamentos_valor = $("#id_medicamentos_valor").val();       
+    $("#id_medicamentos_total").val(Number(medicamentos_cantidad)*Number(medicamentos_valor)); 
+
+   $("#id_medicamentos_valor").blur(function(){
+    var medicamentos_cantidad = $("#id_medicamentos_cantidad").val();
+    var medicamentos_valor = $("#id_medicamentos_valor").val();       
+    $("#id_medicamentos_total").val(Number(medicamentos_cantidad)*Number(medicamentos_valor)); 
+
+  }); // blur paridas propias
+  }); // blur paridas ajenas
+
+
+ $("#id_herbicidas_cantidad").blur(function(){
+    var herbicidas_cantidad = $("#id_herbicidas_cantidad").val();
+    var herbicidas_valor = $("#id_herbicidas_valor").val();       
+    $("#id_herbicidas_total").val(Number(herbicidas_cantidad)*Number(herbicidas_valor)); 
+
+  $("#id_herbicidas_valor").blur(function(){
+    var herbicidas_cantidad = $("#id_herbicidas_cantidad").val();
+    var herbicidas_valor = $("#id_herbicidas_valor").val();       
+    $("#id_herbicidas_total").val(Number(herbicidas_cantidad)*Number(herbicidas_valor)); 
+
+  }); // blur paridas propias
+  }); // blur paridas ajenas
+
+
+ $("#id_fertilizantes_quimicos_cantidad").blur(function(){
+    var fertilizantes_cantidad = $("#id_fertilizantes_quimicos_cantidad").val();
+    var fertilizantes_valor = $("#id_fertilizantes_quimicos_valor").val();       
+    $("#id_fertilizantes_quimicos_total").val(Number(fertilizantes_cantidad)*Number(fertilizantes_valor)); 
+
+  $("#id_fertilizantes_quimicos_valor").blur(function(){
+    var fertilizantes_cantidad = $("#id_fertilizantes_quimicos_cantidad").val();
+    var fertilizantes_valor = $("#id_fertilizantes_quimicos_valor").val();       
+    $("#id_fertilizantes_quimicos_total").val(Number(fertilizantes_cantidad)*Number(fertilizantes_valor)); 
+
+  }); // blur paridas propias
+  }); // blur paridas ajenas
+
+ $("#id_fertilizantes_organicos_cantidad").blur(function(){
+    var organicos_cantidad = $("#id_fertilizantes_organicos_cantidad").val();
+    var organicos_valor = $("#id_fertilizantes_organicos_valor").val();       
+    $("#id_fertilizantes_organicos_total").val(Number(organicos_cantidad)*Number(organicos_valor)); 
+
+  $("#id_fertilizantes_organicos_valor").blur(function(){
+    var fertilizantes_cantidad = $("#id_fertilizantes_organicos_cantidad").val();
+    var organicos_valor = $("#id_fertilizantes_organicos_valor").val();       
+    $("#id_fertilizantes_organicos_total").val(Number(fertilizantes_cantidad)*Number(organicos_valor)); 
+
+  }); // blur paridas propias
+  }); // blur paridas ajenas
+
+
+ $("#id_antiparasitarios_cantidad").blur(function(){
+    var antiparasitarios_cantidad = $("#id_antiparasitarios_cantidad").val();
+    var antiparasitarios_valor = $("#id_antiparasitarios_valor").val();       
+    $("#id_antiparasitarios_total").val(Number(antiparasitarios_cantidad)*Number(antiparasitarios_valor)); 
+
+  $("#id_antiparasitarios_valor").blur(function(){
+    var antiparasitarios_cantidad = $("#id_antiparasitarios_cantidad").val();
+    var antiparasitarios_valor = $("#id_antiparasitarios_valor").val();       
+    $("#id_antiparasitarios_total").val(Number(antiparasitarios_cantidad)*Number(antiparasitarios_valor)); 
+
+  }); // blur paridas propias
+  }); // blur paridas ajenas
+
+ $("#id_herramientas_accesorios_cantidad").blur(function(){
+    var herramientas_cantidad = $("#id_herramientas_accesorios_cantidad").val();
+    var herramientas_valor = $("#id_herramientas_accesorios_valor").val();       
+    $("#id_herramientas_accesorios_total").val(Number(herramientas_cantidad)*Number(herramientas_valor)); 
+
+  $("#id_herramientas_accesorios_valor").blur(function(){
+    var herramientas_cantidad = $("#id_herramientas_accesorios_cantidad").val();
+    var herramientas_valor = $("#id_herramientas_accesorios_valor").val();       
+    $("#id_herramientas_accesorios_total").val(Number(herramientas_cantidad)*Number(herramientas_valor)); 
+
+  }); // blur paridas propias
+  }); // blur paridas ajenas
+
+});
+
+
+</script>
+{% endblock %}
+
+{% block content %}
+
+<ul class="nav nav-tabs">
+  <li role="presentation"><a href="/lacteos/produccion-leche/{{object.predio_id}}">Venta de lácteos </a></li>
+  <li role="presentation" class="active"><a href="#">Costos de producción </a></li>
+</ul>
+
+</br>
+
+<form action="." method="POST" id="form">{% csrf_token %}
+ <div class="span4" style="margin-bottom: 10px;margin-left: -10px;width: auto;padding-left: 10px">
+              <ul class="inline">
+                <li style="margin-right:190px"><h4>Insumos</h4></li>
+                <li style="margin-right:42px"><p class="text-info">Cant</p></li>
+                <li style="margin-right:40px"><p class="text-info">Valor unit.</p></li>
+                <li><p class="text-info">Valor total</p></li>
+              </ul>
+              <ul class="inline">
+                <li>Baños para control de parásitos externos</li>
+                <li>{{form.parasitos_externos_cantidad}}</li>
+                <li>{{form.parasitos_externos_valor}}</li>
+                <li>{{form.parasitos_externos_total}}</li>
+              </ul>
+              <ul class="inline">
+                <li style="margin-right:160px">Alambre de púa</li>
+                <li>{{form.alambre_pua_cantidad}}</li>
+                <li>{{form.alambre_pua_valor}}</li>
+                <li>{{form.alambre_pua_total}}</li>
+              </ul>
+              <ul class="inline">
+                <li style="margin-right:79px">Alambre para cerca eléctrica</li>
+                <li>{{form.alambre_electrica_cantidad}}</li>
+                <li>{{form.alambre_electrica_valor}}</li>
+                <li>{{form.alambre_electrica_total}}</li>
+              </ul>
+              <ul class="inline">
+                <li style="margin-right:120px">Gallinaza compostada</li>
+                <li>{{form.gallinaza_compostada_cantidad}}</li>
+                <li>{{form.gallinaza_compostada_valor}}</li>
+                <li>{{form.gallinaza_compostada_total}}</li>
+              </ul>
+              <ul class="inline">
+                <li style="margin-right:126px">Servicios veterinarios</li>
+                <li>{{form.servicios_veterinarios_cantidad}}</li>
+                <li>{{form.servicios_veterinarios_valor}}</li>
+                <li>{{form.servicios_veterinarios_total}}</li>
+              </ul>
+              <ul class="inline">
+                <li style="margin-right:218px">Postes</li>
+                <li>{{form.postes_cantidad}}</li>
+                <li>{{form.postes_valor}}</li>
+                <li>{{form.postes_total}}</li>
+              </ul>
+              <ul class="inline">
+                <li style="margin-right:100px">Medicamentos y vacunas</li>
+                <li>{{form.medicamentos_cantidad}}</li>
+                <li>{{form.medicamentos_valor}}</li>
+                <li>{{form.medicamentos_total}}</li>
+              </ul>
+              <ul class="inline">
+                <li style="margin-right:194px">Herbicidas</li>
+                <li>{{form.herbicidas_cantidad}}</li>
+                <li>{{form.herbicidas_valor}}</li>
+                <li>{{form.herbicidas_total}}</li>
+              </ul>
+              <ul class="inline">
+                <li style="margin-right:124px">Fertilizantes químicos</li>
+                <li>{{form.fertilizantes_quimicos_cantidad}}</li>
+                <li>{{form.fertilizantes_quimicos_valor}}</li>
+                <li>{{form.fertilizantes_quimicos_total}}</li>
+              </ul>
+              <ul class="inline">
+                <li style="margin-right:118px">Fertilizantes orgánicos</li>
+                <li>{{form.fertilizantes_organicos_cantidad}}</li>
+                <li>{{form.fertilizantes_organicos_valor}}</li>
+                <li>{{form.fertilizantes_organicos_total}}</li>
+              </ul>
+              <ul class="inline">
+                <li style="margin-right:163px">Antiparasitarios</li>
+                <li>{{form.antiparasitarios_cantidad}}</li>
+                <li>{{form.antiparasitarios_valor}}</li>
+                <li>{{form.antiparasitarios_total}}</li>
+              </ul>
+              <ul class="inline">
+                <li style="margin-right:92px">Herramientas y accesorios</li>
+                <li>{{form.herramientas_accesorios_cantidad}}</li>
+                <li>{{form.herramientas_accesorios_valor}}</li>
+                <li>{{form.herramientas_accesorios_total}}</li>
+              </ul>
+
+<input type="submit" value="Guardar">
+                          
+<nav>
+  <ul class="pager">
+  <li class="previous"><a href="/lacteos/suplementos/{{object.predio_id}}"><span aria-hidden="true">&larr;</span> Suplementos</a></li>
+  <!--<li class="next"><a href="/lacteos/insumos">Insumos <span aria-hidden="true">&rarr;</span></a></li>-->
+  </ul>
+</nav>
+
+            </div>
+            </div>
+          </div>
+         </div>
+       </div>
+      </div>       
+     </div>         
+
+
+
+
+
+
+{% endblock %}
