@@ -1,0 +1,140 @@
+{% extends './base.html' %}
+
+{% block js %}
+
+<script> 
+  $(function () {
+        $("#myTab a:contains('Opciones de administración')").parent().addClass('active');        
+     });
+
+$(document).ready(function() {
+  $('#form').ajaxForm(function() {
+    alert("Formulario guardado, ahora debes crear un administrador");
+    window.location.href = '/pae/administrador/{{object.predio_id}}/';
+  }); 
+});
+
+  
+</script>
+{% endblock %}
+
+{% block content %}
+
+<ul class="nav nav-tabs">
+  <li role="presentation" class="active"><a href="#">Propietario</a></li>
+  <li role="presentation"><a href="/pe/propietario/{{object.predio_id}}">Propietario y administrador</a></li>
+  <li role="presentation"><a href="/e/propietario/{{object.predio_id}}">Propietario, administrador y encargado</a></li>
+  <li role="presentation"><a href="/productor/habitantes/{{object.predio_id}}">Habitantes del predio</a></li>
+</ul>
+
+</br>
+
+<form action="." method="POST" id="form">{% csrf_token %}
+<div class="tab-content">              
+       <div class="tab-pane active" id="parte1">
+   
+        <div class="tab-content">
+        <div class="tab-pane active" id="propadmonencarg">
+            <div class="row-fluid">        
+          <div class="span6">
+            <ul class="inline">
+            {{form.rol}}
+<div class="alert alert-info" role="alert"><h4 class="text-left">Información propietario del predio</h4></div>
+              <li style="margin-right: 70px">Primer nombre</li>
+              <li>Segundo nombre</li>
+            </ul>
+            <ul class="inline">
+              <li>{{form.primer_nombre}}</li>
+              <li>{{form.segundo_nombre}}</li>
+            </ul>
+            <ul class="inline">
+              <li style="margin-right: 70px">Primer apellido</li>
+              <li>Segundo apellido</li>
+            </ul>
+            <ul class="inline">
+              <li>{{form.primer_apellido}}</li>
+              <li>{{form.segundo_apellido}}</li>
+            </ul>
+            <ul class="inline">
+              <li style="margin-right: 41px">Tipo de documento</li>
+              <li>Número de documento</li>
+            </ul>
+            <ul class="inline">
+              <li>{{form.tipo_identificacion}}</li>
+              <li>{{form.numero_identificacion}}</li>
+            </ul>
+            <ul class="inline">
+              <li style="margin-right: 123px">Género</li>
+              <li>Estado civil</li>
+            </ul>
+            <ul class="inline">
+              <li style="margin-right: 20px">
+                {{form.genero}}
+              </li>
+              <li>{{form.estado_civil}}</li>
+            </ul>
+            <ul class="inline">
+              <li style="margin-right: 55px">R&eacute;gimen de salud</li>
+              <li>Sisben</li>
+            </ul>
+            <ul class="inline">
+              <li style="margin-right: 20px">
+               {{form.regimen_salud}}
+              </li>
+              <li>
+               {{form.sisben}}
+              </li>
+            </ul>
+            <ul class="inline">
+              <li style="margin-right: 105px">Extranjero</li>
+              <li>Tel&eacute;fono</li>
+            </ul>
+            <ul class="inline">
+              <li style="margin-right: 20px">
+              {{form.extranjero}}
+              </li>
+              <li>{{form.telefono}}</li>
+            </ul>
+            <ul class="inline">
+              <li>Correo electr&oacute;nico</li>
+            </ul>
+            <ul class="inline">
+              <li>{{form.email}}</li>
+            </ul>
+            <ul class="inline">
+              <li style="margin-right: 30px">Fecha de nacimiento</li>
+              <li>Lugar de nacimiento</li>
+            </ul>
+            <ul class="inline">
+              <li>{{form.fecha_nacimiento}}</li>
+              <li>{{form.lugar_nacimiento}}</li>
+            </ul>
+            <ul class="inline">
+              <li>Direcci&oacute;n residencia</li>
+            </ul>
+            <ul class="inline">
+              <li>{{form.direccion_residencia}}</li>
+            </ul>
+          </div>
+                
+        </div>
+        </div>
+
+<input type="submit"  value="Guardar Propietario">        
+
+<nav>
+  <ul class="pager">
+    <!--<li class="previous"><a href="#"><span aria-hidden="true">&larr;</span> Older</a></li>-->
+    <li class="next"><a href="/pae/administrador/{{object.predio_id}}">Administrador <span aria-hidden="true">&rarr;</span></a></li>
+  </ul>
+</nav>
+
+       </div>
+       </div>
+      </div>       
+     </div>         
+</form>
+
+
+
+{% endblock %}

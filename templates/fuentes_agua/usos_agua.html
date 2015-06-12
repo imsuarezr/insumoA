@@ -1,0 +1,34 @@
+{% extends './base.html' %}
+
+{% block js %}
+
+<script> 
+  $(function () {
+        $("#myTab a:contains('Fuentes de agua y conservación')").parent().addClass('active');        
+     });
+
+$(document).ready(function() {
+  $('#form').ajaxForm(function() {
+    alert("Usos de agua guardado correctamente");
+   window.location.href = '/usossuelo/pastoreo/{{object.predio_id}}';
+  }); 
+});
+
+  
+</script>
+{% endblock %}
+
+{% block content %}
+
+<ul class="nav nav-tabs">
+  <li role="presentation"><a href="/fuentesagua/nacimientos/{{object.predio_id}}">Vivienda - Nacimientos </a></li>
+  <li role="presentation"  class="active"><a href="#">Vivienda - Usos </a></li>
+</ul>
+
+</br>
+
+<form action="." method="POST" id="form">{% csrf_token %}
+{{form.as_p}}
+<p><input type="submit" value="Guardar"></p>
+</form>
+{% endblock %}

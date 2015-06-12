@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Reportes</title>
+
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.6/css/jquery.dataTables.min.css">
+<script src="https://cdn.datatables.net/1.10.6/js/jquery.dataTables.min.js"></script>
+<script>
+  $(document).ready(function() {
+    var table = $('#tabla').DataTable( {
+        responsive: true,
+        paging: false
+    } );
+ 
+    new $.fn.dataTable.FixedHeader( table );
+   } );
+ </script> 
+
+
+</head>
+<body>
+	
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+    <img alt="Brand" src="http://imageshack.com/a/img538/8439/N3lBTg.png" width="50px">
+    <p class="navbar-text navbar-right">{{user.username}}</a></p>
+    <p class="navbar-text navbar-right"><a href="/edit">Editar</a></p>
+    <p class="navbar-text navbar-right"><a href="/edit">Reportes</a></p>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid">
+
+
+<div class="row">
+  <div class="col-md-3">
+  	
+<div class="panel panel-default">
+  <div class="panel-heading">Reportes</div>
+  <div class="panel-body">
+    
+<form action="." method="POST">
+{% for predio in predios %}
+<p><a href="/reportes/{{object.id}}">{{object.nombre_predio}}</a></p>
+{% endfor %}
+</form>
+
+
+  </div>
+</div>
+  </div><!--col-md-4-->
+  
+  <div class="col-md-9">
+  	
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    
+<p><h4><b>Información general del predio {{object.nombre_predio}}</b></h4></p>
+</br>
+<div class="row">
+  <div class="col-md-6">.col-md-6
+  </div><!--col-md-6-->
+  <div class="col-md-6">
+    <p><b>Nombre de la finca:</b> {{object.nombre_predio}}</p>
+    <p><b>Extension:</b> {{object.ext_total}} hectáreas</p>
+    <p><b>Tenencia:</b> {{object.tenencia_finca}} años</p>
+    <p><b>Nombre Propietario:</b> Hola{{propietarios.rol}}</p>
+
+  </div><!--col-md-6-->
+</div><!--row-->
+
+
+<p>Inventario Ganadero</p>
+
+
+
+<div class="table-responsive">
+  <table class="table table-condensed table-bordered">
+    <thead>
+      <tr>
+        <th>Hembras</th>
+        <th>Propios</th>
+        <th>Ajenos</th>
+        <th>Totales</th>
+        <th>Machos</th>
+        <th>Propios</th>
+        <th>Ajenos</th>
+        <th>Totales</th>
+      </tr>
+    </thead>
+  <tbody>
+    <tr class="success">
+      <td>Vacas paridas</td>
+      {% for paridas in ganadohembrasvacasparidas %}
+      <td>{{paridas.propios}}</td>
+      <td>{{paridas.ajenos}}</td>
+      <td>{{paridas.totales}}</td>
+      {% endfor %}
+      <td>Toros</td>
+      {% for toros in ganadomachostoros %}
+      <td>{{toros.propios}}</td>
+      <td>{{toros.ajenos}}</td>
+      <td>{{toros.totales}}</td>
+      {% endfor %}
+    </tr>    
+    <tr>
+    <td>Vacas horras(Secas)</td>
+     {% for horras in ganadohembrasvacashorras %}
+    <td>{{horras.propios}}</td>
+    <td>{{horras.ajenos}}</td>
+    <td>{{horras.totales}}</td>
+    {% endfor %}
+    <td>Machos mayores a 3 años</td>
+    {% for mayores3anios in ganadomachosmayores3anios %}
+    <td>{{mayores3anios.propios}}</td>
+    <td>{{mayores3anios.ajenos}}</td>
+    <td>{{mayores3anios.totales}}</td>
+    {% endfor %}
+    </tr>
+                  
+    <tr class="success">
+      <td>Hembras de 2 a 3 años</td>
+      {% for 2a3anios in ganadohembras2a3anios %}
+      <td>{{2a3anios.propios}}</td>
+      <td>{{2a3anios.ajenos}}</td>
+      <td>{{2a3anios.totales}}</td>
+      {% endfor %}
+      <td>Machos entre 2 a 3 años</td>
+      {% for 2a3anios in ganadomachos2a3anios %}
+      <td>{{2a3anios.propios}}</td>
+      <td>{{2a3anios.ajenos}}</td>
+      <td>{{2a3anios.totales}}</td>
+      {% endfor %}
+    </tr>
+                  
+    <tr>
+      <td>Hembras de 1 a 2 años</td>
+      {% for 1a2anios in ganadohembras1a2anios %}
+      <td>{{1a2anios.propios}}</td>
+      <td>{{1a2anios.ajenos}}</td>
+      <td>{{1a2anios.totales}}</td>
+      {% endfor %}
+      <td>Machos 1 a 2 años</td>
+       {% for 1a2anios in ganadomachos1a2anios %}
+      <td>{{1a2anios.propios}}</td>
+      <td>{{1a2anios.ajenos}}</td>
+      <td>{{1a2anios.totales}}</td>
+      {% endfor %}
+      </tr>             
+      <tr class="success">
+        <td>Hembras menores a 1 año</td>
+        {% for menores1anio in ganadohembrasmenores1anio %}
+        <td>{{menores1anio.propios}}</td>
+        <td>{{menores1anio.ajenos}}</td>
+        <td>{{menores1anio.totales}}</td>
+        {% endfor %}
+        <td>Machos menores de 1 año</td>
+        {% for menores1anio in ganadomachosmenores1anio %}
+        <td>{{menores1anio.propios}}</td>
+        <td>{{menores1anio.ajenos}}</td>
+        <td>{{menores1anio.totales}}</td>
+        {% endfor %}
+    </tr>
+    
+    <tr>
+      <td>Animales de saca o descarte</td>
+      {% for destete in ganadohembrasdestete %}
+      <td>{{destete.propios}}</td>
+      <td>{{destete.ajenos}}</td>
+      <td>{{destete.totales}}</td>
+      {% endfor %}
+      <td>Bueyes</td>
+      {% for bueyes in ganadomachosbueyes %}
+      <td>{{bueyes.propios}}</td>
+      <td>{{bueyes.ajenos}}</td>
+      <td>{{bueyes.totales}}</td>
+      {% endfor %}
+  </tr>
+<!--                  
+  <tr class="success">
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>Animales de saca o descarte</td>
+    <td>8</td>
+    <td>8</td>
+    <td>16</td>
+  </tr>
+-->                  
+  <tr>
+    <td><strong>Total hembras</strong></td>
+    <td></td>
+    <td></td>
+    <td>118</td>
+    <td><strong>Total machos</strong></td>
+    <td></td>
+    <td></td>
+    <td>56</td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+
+
+
+
+
+  </div>
+</div>
+
+  </div><!--col-md-12-->
+
+</div><!--row-->
+
+
+
+
+</div><!--fluid-->
+
+
+
+</body>
+</html>

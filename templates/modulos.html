@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+     <meta charset="utf-8">
+     <title>Formulario web CIPAV</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap.css">
+     <style type="text/css">
+     body{
+     	padding-top: 10px;
+     }
+
+     html,
+     body {
+      height: 100%;
+     }
+     @media (max-width: 900px) {
+      #formulario1 {
+        display: block;
+        margin-bottom: 310px;
+        width: 100%;
+      }
+     }
+     @media (max-width: 770px) {
+      .container-fluid .row-fluid {
+        margin-left: -200px;
+        margin-right: 200px;
+      }
+     }
+     </style>
+     <link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap-responsive.css">       
+
+  </head> 
+  <body>
+  	<div class="navbar" id="barra" style="margin-bottom:200px">
+  		<div class="navbar-inner">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="#" class="brand">PrediApp<img src="http://imageshack.com/a/img538/8439/N3lBTg.png" id="imagen1"></a>
+         <legend id="separador"></legend> 
+  	 </div>
+    </div>
+    <div class="container-fluid" style="margin-bottom:200px">
+      <div class="row-fluid" style="margin-left:150px">
+        <div class="span3" style="border-radius:5px; background-color:#F5F5F5; padding-top:5px">
+          <a href="/informacionpredio/infogeneral/" class="pull-center">
+          <img src="{{STATIC_URL}}img/Img_Usuarios.png" style="margin-left:110px; height:60px; widht:60px">          
+          <h5 class="text-center">Modulo identificacion de usuarios</h5>
+          </a>
+        </div>
+        <div class="span3" style="border-radius:5px; background-color:#F5F5F5; padding-top:5px">
+          <a href="opcionesadministracion/identifiacionusuarios">
+            <img src="{{STATIC_URL}}img/Img_Planificacion.png" style="margin-left:90px; height:60px; widht:60px">
+            <h5 class="text-center">Modulo planificacion predial</h5>
+          </a>
+        </div>
+        <div class="span3" style="border-radius:5px; background-color:#F5F5F5; padding-top:5px">
+          <a href="#">
+            <img src="{{STATIC_URL}}img/Img_SIG.png" style="margin-left:110px; height:60px; widht:60px">
+            <h5 class="text-center">Modulo localizacion y caracterizacion</h5>
+          </a>
+        </div>
+      </div>
+    </div>
+    <footer>
+    <legend id="separador2"></legend>
+    <div class="container-fluid" id="piepagina">
+     <div class="row-fluid">
+       <div class="span2">
+         <a href="http://www.cipav.org.co/"><img src="http://imageshack.com/a/img540/1305/HhrNZx.png" id="icono2"></a>
+         <a href="www.arauca-arauca.gov.co/"><img src="http://imageshack.com/a/img537/2955/XyXxZK.png" id="icono3"></a>
+       </div>
+       <div class="span5" style="float:right; background-color:#228B22; border-radius:5px; padding-right:5px;">
+         <p style="float:right; color:white; font-size:11px; margin-bottom:-10px">Copyrigth alcaldia de Arauca 2014. http://www.arauca-arauca.gov.co</p>         
+         <p style="float:right; color:white; font-size:11px; margin-bottom:-10px"><i class="icon-envelope icon-white"></i> Cra 21 # 19- 18 Barrio la Esperanza</p>
+         <p style="float:right; color:white; font-size:11px; clear:both; margin-bottom:-2px">Sistemas@arauca.gov.co</p>
+       </div>
+     </div>
+    </div>
+    
+    </footer>
+    <script src="{{STATIC_URL}}js/jquery-1.11.2.min.js"></script>
+    <script src="{{STATIC_URL}}js/bootstrap.js"></script>
+  </body>
+</html>

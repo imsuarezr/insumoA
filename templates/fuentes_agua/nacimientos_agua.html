@@ -1,0 +1,73 @@
+{% extends './base.html' %}
+
+{% block js %}
+
+<script> 
+  $(function () {
+        $("#myTab a:contains('Fuentes de agua y conservación')").parent().addClass('active');        
+     });
+
+$(document).ready(function() {
+  $('#form').ajaxForm(function() {
+    alert("Fuentes de agua guardado exitosamente");
+    window.location.href = '/fuentesagua/usos/{{object.predio_id}}';
+  }); 
+});
+
+  
+</script>
+{% endblock %}
+
+{% block content %}
+
+<ul class="nav nav-tabs">
+  <li role="presentation" class="active"><a href="#">Vivienda - Nacimientos </a></li>
+  <li role="presentation"><a href="/fuentesagua/usos/{{object.predio_id}}">Vivienda - Usos </a></li>
+</ul>
+
+</br>
+
+<form action="." method="POST" id="form">{% csrf_token %}
+ <div class="tab-content">
+           <div class="tab-pane active" id="nacimientos">
+             <div class="row-fluid">
+               <ul class="inline">
+                 <h4>Vivienda - Nacimientos</h4>
+                 <li>Cuantas corrientes de agua pasan por su finca (R&iacute;os, caños, etc)?</li>
+                 <li>
+                   {{form.cantidad_corrientes}}
+                 </li>
+               </ul>
+               <ul class="inline">
+                 <li>Proteje usted las corrientes y zonas naturales de concentraci&oacute;n de agua de sus fincas?</li>
+                 <li>
+                   {{form.protege_corrientes}}
+                 </li>
+               </ul>
+               <ul class="inline">
+                 <li>Cuantas zonas naturales de concentraci&oacute;n de agua posee su finca (Lagunas, esteros, etc)?</li>
+                 <li>
+                   {{form.cantidad_zonas_rurales}}
+                 </li>
+               </ul>
+               <ul class="inline">
+                 <li>Como proteje usted las corrientes y  zonas de concentraci&oacute;n de agua de su finca?</li>
+               </ul>
+               <ul class="inline">
+                 <li>
+                   {{form.forma_proteccion}}
+                 </li>
+               </ul>
+             </div>
+           </div>
+         <input type="submit"  value="Guardar">
+         </div>
+       </div>
+      </div>       
+     </div>         
+</form>
+    
+
+
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends './base.html' %}
+
+{% block js %}
+
+<script> 
+  $(function () {
+        $("#myTab a:contains('Agroecoturismo')").parent().addClass('active');        
+     });
+
+$(document).ready(function() {
+  $('#form').ajaxForm(function() {
+    alert("Información de Agroecoturismo guardado exitosamente");
+    window.location.href = '/enf/enfoque_diferencial/{{object.predio_id}}';
+  }); 
+});
+
+  
+</script>
+{% endblock %}
+
+{% block content %}
+
+</br>
+
+<form action="." method="POST" id="form">{% csrf_token %}
+
+<ul class="inline">
+<li>Ha prestado algun tipo de servicio de agroecoturismo en su predio?</li>
+<li>
+{{form.prestacion_agrocoturismo_predio}}         
+</li>
+</ul>
+
+
+<ul class="inline">
+<h5>Atractivos en la finca</h5>
+{{form.atractivo}}            
+</ul>
+<ul class="inline">
+<h5>Actividades en la finca</h5>
+{{form.actividad}}            
+</ul>
+
+
+
+<p><input type="submit" value="Guardar"></p>
+</form>
+{% endblock %}
