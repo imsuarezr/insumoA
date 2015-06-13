@@ -22,7 +22,7 @@ class InfoGeneralPredioView(TemplateView):
 	template_name = 'predio/infogeneral.html'
 
 	def dispatch(self,request,*args,**kwargs):
-		predio_before = InfoPredioGeneral.objects.filter(user_id=self.request.user)
+		predio_before = InfoPredioGeneral.objects.filter(user_id=self.request.user.id)
 		if predio_before.count()==0:
 			return HttpResponseRedirect('/informacionpredio/first/infogeneral/')
 		else:
@@ -133,11 +133,9 @@ class ViviendaPredioView(UpdateModelMixin, UpdateView):
 	success_url = '/'
 	template_name = 'predio/vivienda.html'
 
-
-
-
-
-
-
-
-
+class Mapa(TemplateView):
+	template_name = 'mapa.html'
+	def get_context_data(self, **kwargs):
+		context = super(Mapa, self).get_context_data(**kwargs)		
+		context['predios'] = InfoPredioGeneral.objects.all()
+		return context

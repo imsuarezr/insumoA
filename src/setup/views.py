@@ -27,7 +27,7 @@ from itertools import chain
 	
 class UpdateModelPredioCreadoMixin(object):
 	def get_object(self):
-		return self.model.objects.get_or_create(pk=self.kwargs['pk'],user_id=self.request.user)[0]
+		return self.model.objects.get_or_create(pk=self.kwargs['pk'],user_id=self.request.user.id)[0]
 
 
 class UpdateModelMixin(object):
@@ -38,7 +38,7 @@ class PredioMixin(object):
 	def form_valid(self,form):
 		get_productor = Persona()
 		get_productor = form.save(commit=False)
-		get_productor.predio = InfoPredioGeneral.objects.filter(user_id=self.request.user).latest('id')
+		get_productor.predio = InfoPredioGeneral.objects.filter(user_id=self.request.user.id).latest('id')
 		get_productor.save()
 		return super(PredioMixin,self).form_valid(form)
 
@@ -74,7 +74,7 @@ class Edit(TemplateView):
 
 	def get_context_data(self, **kwargs):
 		context = super(Edit, self).get_context_data(**kwargs)
-		context['data'] = InfoPredioGeneral.objects.filter(user_id=self.request.user)
+		context['data'] = InfoPredioGeneral.objects.filter(user_id=self.request.user.id)
 		#context['form'] = self.form_class
 		return context
 

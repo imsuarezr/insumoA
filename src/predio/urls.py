@@ -19,6 +19,7 @@ urlpatterns = patterns('predio.views',
 
 	#url(r'^informacionpredio/guardar-credito/(?P<predio_id>[-_\w]+)/(?P<pk>[-_\w]+)/$', FormCreditoView.as_view(),name='creditos'),
 	url(r'^informacionpredio/vivienda/(?P<predio_id>[-_\w]+)/$', ViviendaPredioView.as_view(),name='vivienda'),
+	url(r'^informacionpredio/infogeneral1/.*$', Mapa.as_view(),name='mapa'),
 
 	
 	
